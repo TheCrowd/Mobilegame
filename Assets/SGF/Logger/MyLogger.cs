@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using UnityEngine;
 
-namespace OT.Foundation
+namespace SGF.Logger
 {
     public class MyLogger
     {

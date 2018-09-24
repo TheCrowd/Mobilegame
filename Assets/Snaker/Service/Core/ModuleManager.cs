@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Snaker.Service.Core
 {
+    /// <summary>
+    /// this class handles message and event between modules
+    /// </summary>
     public class ModuleManager:ServiceModule<ModuleManager>
     {
         class MessageObject
