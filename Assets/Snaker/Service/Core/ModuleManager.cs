@@ -117,6 +117,12 @@ namespace Snaker.Service.Core
         }
 
         //=========    Handle Messages ============
+        public void ShowModule(string name, object arg = null)
+        {
+            SendMessage(name, "Show", arg);
+        }
+
+
         public void SendMessage(string target, string msg, params object[] args)
         {
             BusinessModule module = GetModule(target);

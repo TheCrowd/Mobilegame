@@ -63,9 +63,9 @@ namespace Snaker.Service.Core
             base.Release();
         }
 
-        public virtual void Show()
+        protected virtual void Show(object arg)
         {
-            this.Log("Show()");
+            this.Log("Show() arg:{0}", arg);
         }
 
         //====== Message

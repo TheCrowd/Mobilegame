@@ -1,13 +1,14 @@
 ﻿using ProtoBuf;
-using SGF;
 using Snaker.Service.UserManager;
 using UnityEngine;
 using SGF.Logger;
+using SGF.IO;
+using SGF.ProtoBuf;
 
 namespace Snaker
 {
     /// <summary>
-    /// configurations of the App
+    /// configurations of the App, like background music, sound effect
     /// </summary>
     [ProtoContract]
     public class AppConfig

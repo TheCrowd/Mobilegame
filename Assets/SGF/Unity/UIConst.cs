@@ -6,7 +6,7 @@
         public const string UIMsgBox = "Common/UIMsgBox";
 
 
-        //module UI
+        //UI modules
         public const string UILoginPage = "Login/UILoginPage";
         public const string UIHomePage = "Home/UIHomePage";
 

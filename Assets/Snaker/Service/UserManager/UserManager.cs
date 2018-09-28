@@ -18,7 +18,7 @@ namespace Snaker.Service.UserManager
 
 
         /// <summary>
-        /// update user info
+        /// update user info,usually invoke this function after login
         /// </summary>
         /// <param name="data"></param>
         public void UpdateMainUserData(UserBean data)
