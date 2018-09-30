@@ -4,6 +4,7 @@ using Snaker.Service.UserManager;
 using UnityEngine.UI;
 using SGF.Unity;
 using Snaker.Service.Core;
+using Snaker.GameCore.Data;
 
 namespace Snaker.UI.Home
 {
@@ -74,14 +75,14 @@ namespace Snaker.UI.Home
         }
 
 
-        public void OnBtnEndlessPVE()
+        public void OnBtnUnlimitedPVE()
         {
-            //OpenModule(ModuleConst.PVEModule, (int)GameMode.EndlessPVE);
+            OpenModule(ModuleConst.PVEModule, (int)GameMode.UnlimitedPVE);
         }
 
         public void OnBtnTimelimitPVE()
         {
-            //OpenModule(ModuleConst.PVEModule, (int)GameMode.TimelimitPVE);
+            OpenModule(ModuleConst.PVEModule, (int)GameMode.TimeLimitedPVE);
         }
 
         public void OnBtnPVP()

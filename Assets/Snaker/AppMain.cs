@@ -10,6 +10,7 @@ using Snaker.Service.Core;
 using Snaker.Module;
 using Snaker.Service.UserManager;
 using SGF.Unity;
+using Snaker.GameCore;
 
 public class AppMain : MonoBehaviour {
 
@@ -43,7 +44,7 @@ public class AppMain : MonoBehaviour {
 
         UserManager.Instance.Init();
 
-        //GameManager.Instance.Init();
+        GameManager.Instance.Init();
     }
 
 
@@ -51,8 +52,8 @@ public class AppMain : MonoBehaviour {
     {
         ModuleManager.Instance.CreateModule(ModuleConst.LoginModule);
         ModuleManager.Instance.CreateModule(ModuleConst.HomeModule);
-        //ModuleManager.Instance.CreateModule(ModuleConst.PVEModule);
-        //ModuleManager.Instance.CreateModule(ModuleConst.PVPModule);
+        ModuleManager.Instance.CreateModule(ModuleConst.PVEModule);
+        ModuleManager.Instance.CreateModule(ModuleConst.PVPModule);
         //ModuleManager.Instance.CreateModule(ModuleConst.HostModule);
     }
 
