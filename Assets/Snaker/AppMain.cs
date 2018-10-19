@@ -11,6 +11,7 @@ using Snaker.Module;
 using Snaker.Service.UserManager;
 using SGF.Unity;
 using Snaker.GameCore;
+using SGF.Network;
 
 public class AppMain : MonoBehaviour {
 
@@ -36,7 +37,7 @@ public class AppMain : MonoBehaviour {
     {
         ModuleManager.Instance.Init("Snaker.Module");
 
-        //NetworkManager.Instance.Init();
+        NetworkManager.Instance.Init();
 
         UIManager.Instance.Init("ui/");
         UIManager.MainPage = UIConst.UIHomePage;
@@ -54,7 +55,7 @@ public class AppMain : MonoBehaviour {
         ModuleManager.Instance.CreateModule(ModuleConst.HomeModule);
         ModuleManager.Instance.CreateModule(ModuleConst.PVEModule);
         ModuleManager.Instance.CreateModule(ModuleConst.PVPModule);
-        //ModuleManager.Instance.CreateModule(ModuleConst.HostModule);
+        ModuleManager.Instance.CreateModule(ModuleConst.HostModule);
     }
 
     // Update is called once per frame

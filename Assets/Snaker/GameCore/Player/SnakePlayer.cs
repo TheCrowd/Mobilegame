@@ -21,8 +21,8 @@ namespace Snaker.GameCore.Player
 
         //----------------------------------------------------------------------
         /// <summary>
-        /// 作为Player实体，有些功能需要用组合的方式去实现，从而需要有组件的概念
-        /// 并不是每一个Entity都会有组件的
+        /// As a player, some function needs to be implemented in a combined way, therefore component is needed
+        /// Note:not all entities have components
         /// </summary>
         private List<PlayerComponent> m_listCompoent = new List<PlayerComponent>();
 
@@ -50,34 +50,34 @@ namespace Snaker.GameCore.Player
             m_data = data;
             m_context = GameManager.Instance.Context;
 
-            //创建用来显示视图的容器
+            //create gameobject for player
             m_container = new GameObject("SnakePlayer" + data.id);
 
-            //创建Head
+            //create snake head
             m_head = EntityFactory.InstanceEntity<SnakeHead>();
             m_head.Create(0, m_data, m_container.transform);
 
-            //创建Tail
+            //create snake tail
             m_tail = EntityFactory.InstanceEntity<SnakeTail>();
             m_tail.Create(0, m_data, m_container.transform);
 
-            //组合成一条蛇
+            //connect head and tail
             m_head.SetNext(m_tail);
             m_tail.SetPrev(m_head);
 
-            //增加默认数量的Node
+            //add default number of nodes to snake
             int initCount = m_data.snakeData.length;
             m_data.snakeData.length = 0;
             AddNodes(initCount);
 
-            //创建AI
+            //create aiSnake
             if (m_data.ai > 0)
             {
                 var ai = new AISnake(this);
                 m_listCompoent.Add(ai);
             }
 
-            //放置在出生坐标
+            //move to position where the snake is born
             MoveTo(pos);
         }
 
@@ -94,7 +94,7 @@ namespace Snaker.GameCore.Player
             }
             m_listCompoent.Clear();
 
-            //释放整条蛇，包括头尾
+            //release the snake, head and tail included
             SnakeNode node = m_head;
             while (node != null)
             {
@@ -131,7 +131,7 @@ namespace Snaker.GameCore.Player
         {
             for (int i = 0; i < cnt; i++)
             {
-                //除了头尾外，其它Node从1开始编号
+                //apart from head and tail, the number for nodes starts from 1
                 m_data.snakeData.length++;
                 SnakeNode newNode = EntityFactory.InstanceEntity<SnakeNode>();
                 newNode.Create(m_data.snakeData.length, m_data, m_container.transform);
@@ -141,19 +141,18 @@ namespace Snaker.GameCore.Player
                 m_tail.SetPrev(newNode);
             }
 
-            //计算View的大小
+            //calculate the view scale of snake
             float vs = m_data.snakeData.length / 500f;
             vs = Mathf.Min(vs, 1);
             vs = Mathf.Max(vs, 0.5f);
             m_data.snakeData.viewScale = vs;
-            //m_viewScale = 1;
 
             this.Log(LOG_TAG, "AddNodes() NewCount:{0}, SnakeLength:{1}, ViewSize:{2}", cnt, m_data.snakeData.length, vs);
         }
 
         public bool TryEatFood(EntityObject entity)
         {
-            //这里应该有一个公式来决定吃一个Food生成多少个Node
+            // TODO:a formula to determine how many foods consumed can make up a node for snake
             if (HitTest(entity, HitDistance))
             {
                 AddNodes(m_data.snakeData.size / m_data.snakeData.keyStep);
@@ -223,6 +222,7 @@ namespace Snaker.GameCore.Player
 
         private void Blast()
         {
+            //TODO: some explosion effects can be implemented here
             SnakeNode node = m_head;
             while (node != null)
             {

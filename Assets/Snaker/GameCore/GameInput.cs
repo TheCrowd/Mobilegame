@@ -195,7 +195,7 @@ namespace Snaker.GameCore
                 if (m_MapKeyState[key])
                 {
                     m_MapKeyState[key] = false;
-                    HandleVKey(release_vkey, relase_arg);//converty to vritual key
+                    HandleVKey(release_vkey, relase_arg);//convert to vritual key
                 }
             }
         }

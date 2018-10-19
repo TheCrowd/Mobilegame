@@ -93,6 +93,17 @@ namespace SGF.Logger
             Internal_Log(Prefix + message);
             LogToFile("[I]" + message);
         }
+        [Conditional("ENABLE_LOG_LOOP"), Conditional("ENABLE_LOG")]
+        public static void Log(string message = "")
+        {
+            if (!MyLogger.EnableLog)
+            {
+                return;
+            }
+            Internal_Log(Prefix + message);
+            LogToFile("[I]" + message);
+        }
+
 
         [Conditional("ENABLE_LOG_LOOP"), Conditional("ENABLE_LOG")]
         public static void Log(string tag, string methodName, string message = "")

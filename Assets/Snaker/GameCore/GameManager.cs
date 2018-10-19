@@ -17,30 +17,30 @@ namespace Snaker.GameCore
     {
         private string LOG_TAG = "GameManager";
 
-        private bool m_isRunning;
+        private bool isRunning;
 
 
         /// <summary>
-        /// 游戏的上下文
+        /// context for the game
         /// </summary>
-        private GameContext m_context;
+        private GameContext context;
 
         /// <summary>
-        /// 地图
+        /// map
         /// </summary>
-        private GameMap m_map;
+        private GameMap gameMap;
 
-        //玩家管理,食物管理
-        private List<EntityObject> m_listFood = new List<EntityObject>();
-        private List<SnakePlayer> m_listPlayer = new List<SnakePlayer>();
-        private DictionaryExt<uint, PlayerData> m_mapPlayerData = new DictionaryExt<uint, PlayerData>();
+        //players and foods
+        private List<EntityObject> foodList = new List<EntityObject>();
+        private List<SnakePlayer> playerList = new List<SnakePlayer>();
+        private DictionaryExt<uint, PlayerData> mapPlayerData = new DictionaryExt<uint, PlayerData>();
 
         public event PlayerDieEvent onPlayerDie;
 
         //======================================================================
-        public bool IsRunning { get { return m_isRunning; } }
-        public GameContext Context { get { return m_context; } }
-        public GameMode GameMode { get { return m_context.param.mode; } }
+        public bool IsRunning { get { return isRunning; } }
+        public GameContext Context { get { return context; } }
+        public GameMode GameMode { get { return context.param.mode; } }
         //======================================================================
 
         public void Init()
@@ -53,7 +53,7 @@ namespace Snaker.GameCore
 
         public void CreateGame(GameParam param)
         {
-            if (m_isRunning)
+            if (isRunning)
             {
                 MyLogger.LogError(LOG_TAG, "Create()","Game Is Runing Already!");
                 return;
@@ -61,55 +61,55 @@ namespace Snaker.GameCore
 
             this.Log(LOG_TAG, "Create() param:{0}", param);
 
-            //创建上下文，保存战斗全局参数
-            m_context = new GameContext();
-            m_context.param = param;
-            m_context.random.Seed = param.randSeed;
-            m_context.currentFrameIndex = 0;
+            //create game context to store global game status
+            context = new GameContext();
+            context.param = param;
+            context.random.Seed = param.randSeed;
+            context.currentFrameIndex = 0;
 
 
-            //创建地图
-            m_map = new GameMap();
-            m_map.Load(param.mapData);
-            m_context.mapSize = m_map.Size;
+            //create map
+            gameMap = new GameMap();
+            gameMap.Load(param.mapData);
+            context.mapSize = gameMap.Size;
 
 
-            //初始化工厂
+            //initial entity factory
             EntityFactory.Init();
-            ViewFactory.Init(m_map.View.transform);
+            ViewFactory.Init(gameMap.View.transform);
 
-            //初始化摄像机
+            //initial game camera
             GameCamera.Create();
 
-            m_isRunning = true;
+            isRunning = true;
         }
 
         public void ReleaseGame()
         {
-            if (!m_isRunning)
+            if (!isRunning)
             {
                 return;
             }
 
-            m_isRunning = false;
+            isRunning = false;
 
             GameCamera.Release();
 
-            for (int i = 0; i < m_listPlayer.Count; ++i)
+            for (int i = 0; i < playerList.Count; ++i)
             {
-                m_listPlayer[i].Release();
+                playerList[i].Release();
             }
-            m_listPlayer.Clear();
+            playerList.Clear();
 
-            m_listFood.Clear();
+            foodList.Clear();
 
             ViewFactory.Release();
             EntityFactory.Release();
 
-            if (m_map != null)
+            if (gameMap != null)
             {
-                m_map.Unload();
-                m_map = null;
+                gameMap.Unload();
+                gameMap = null;
             }
 
             onPlayerDie = null;
@@ -122,7 +122,7 @@ namespace Snaker.GameCore
         {
             if (playerId == 0)
             {
-                //处理其它VKey，全局性的VKey
+                //handle other VKey, global Vkey like GameExit, CreatePlayer
                 HandleOtherVKey(vkey, arg, playerId);
             }
             else
@@ -134,7 +134,7 @@ namespace Snaker.GameCore
                 }
                 else
                 {
-                    //处理其它Vkey
+                    //handle other Vkey
                     HandleOtherVKey(vkey, arg, playerId);
 
                 }
@@ -143,7 +143,7 @@ namespace Snaker.GameCore
 
         private void HandleOtherVKey(int vkey, float arg, uint playerId)
         {
-            //全局的VKey处理
+            //handle global Vkey
             bool hasHandled = false;
             hasHandled = hasHandled || DoVKey_CreatePlayer(vkey, arg, playerId);
             hasHandled = hasHandled || DoVKey_ReleasePlayer(vkey, arg, playerId);
@@ -177,35 +177,35 @@ namespace Snaker.GameCore
 
         public void EnterFrame(int frameIndex)
         {
-            if (!m_isRunning)
+            if (!isRunning)
             {
                 return;
             }
 
             if (frameIndex < 0)
             {
-                m_context.currentFrameIndex++;
+                context.currentFrameIndex++;
             }
             else
             {
-                m_context.currentFrameIndex = frameIndex;
+                context.currentFrameIndex = frameIndex;
             }
 
             EntityFactory.ClearReleasedObjects();
 
-            for (int i = 0; i < m_listPlayer.Count; ++i)
+            for (int i = 0; i < playerList.Count; ++i)
             {
-                m_listPlayer[i].EnterFrame(frameIndex);
+                playerList[i].EnterFrame(frameIndex);
             }
 
 
             List<uint> listDiePlayerId = new List<uint>();
 
-            for (int i = 0; i < m_listPlayer.Count; i++)
+            for (int i = 0; i < playerList.Count; i++)
             {
-                SnakePlayer player = m_listPlayer[i];
+                SnakePlayer player = playerList[i];
 
-                if (player.TryHitBound(m_context))
+                if (player.TryHitBound(context))
                 {
                     listDiePlayerId.Add(player.Id);
                     ReleasePlayerAt(i);
@@ -214,7 +214,7 @@ namespace Snaker.GameCore
                     continue;
                 }
 
-                if (player.TryHitEnemies(m_listPlayer))
+                if (player.TryHitEnemies(playerList))
                 {
                     listDiePlayerId.Add(player.Id);
                     ReleasePlayerAt(i);
@@ -222,9 +222,9 @@ namespace Snaker.GameCore
                     continue;
                 }
 
-                for (int j = 0; j < m_listFood.Count; j++)
+                for (int j = 0; j < foodList.Count; j++)
                 {
-                    EntityObject food = m_listFood[j];
+                    EntityObject food = foodList[j];
                     if (player.TryEatFood(food))
                     {
                         RemoveFoodAt(j);
@@ -233,9 +233,9 @@ namespace Snaker.GameCore
                 }
             }
 
-            if (m_map != null)
+            if (gameMap != null)
             {
-                m_map.EnterFrame(frameIndex);
+                gameMap.EnterFrame(frameIndex);
             }
 
             if (onPlayerDie != null)
@@ -252,29 +252,29 @@ namespace Snaker.GameCore
 
         public void RegPlayerData(PlayerData data)
         {
-            m_mapPlayerData[data.id] = data;
-            //m_mapPlayerData.Add(data.id, data);
+            mapPlayerData[data.id] = data;
+            //mapPlayerData.Add(data.id, data);
         }
 
         //==================================================================
 
         internal void CreatePlayer(uint playerId)
         {
-            PlayerData data = m_mapPlayerData[playerId];
+            PlayerData data = mapPlayerData[playerId];
 
             SnakePlayer player = new SnakePlayer();
 
-            Vector3 mapSize = m_context.mapSize;
+            Vector3 mapSize = context.mapSize;
             Vector3 posMax = mapSize * 0.7f;
             Vector3 posMin = mapSize - posMax;
             Vector3 pos = new Vector3();
-            pos.x = m_context.random.Range(posMin.x, posMax.x);
-            pos.y = m_context.random.Range(posMin.y, posMax.y);
-            pos.z = m_context.random.Range(posMin.z, posMax.z);
+            pos.x = context.random.Range(posMin.x, posMax.x);
+            pos.y = context.random.Range(posMin.y, posMax.y);
+            pos.z = context.random.Range(posMin.z, posMax.z);
             pos.z = 0;
 
             player.Create(data, pos);
-            m_listPlayer.Add(player);
+            playerList.Add(player);
         }
 
 
@@ -288,8 +288,8 @@ namespace Snaker.GameCore
         {
             if (index >= 0)
             {
-                SnakePlayer player = m_listPlayer[index];
-                m_listPlayer.RemoveAt(index);
+                SnakePlayer player = playerList[index];
+                playerList.RemoveAt(index);
 
                 player.Release();
             }
@@ -300,16 +300,16 @@ namespace Snaker.GameCore
             int index = GetPlayerIndex(playerId);
             if (index >= 0)
             {
-                return m_listPlayer[index];
+                return playerList[index];
             }
             return null;
         }
 
         private int GetPlayerIndex(uint playerId)
         {
-            for (int i = 0; i < m_listPlayer.Count; i++)
+            for (int i = 0; i < playerList.Count; i++)
             {
-                if (m_listPlayer[i].Id == playerId)
+                if (playerList[i].Id == playerId)
                 {
                     return i;
                 }
@@ -319,7 +319,7 @@ namespace Snaker.GameCore
 
         internal List<SnakePlayer> GetPlayerList()
         {
-            return m_listPlayer;
+            return playerList;
         }
 
         //==================================================================
@@ -327,12 +327,12 @@ namespace Snaker.GameCore
         internal void AddFoodRandom()
         {
             Vector3 pos;
-            pos.x = m_context.random.Range(0, m_context.mapSize.x);
-            pos.y = m_context.random.Range(0, m_context.mapSize.y);
-            pos.z = m_context.random.Range(0, m_context.mapSize.z);
+            pos.x = context.random.Range(0, context.mapSize.x);
+            pos.y = context.random.Range(0, context.mapSize.y);
+            pos.z = context.random.Range(0, context.mapSize.z);
 
             pos.z = 0;
-            int color = m_context.random.Range(1, m_mapPlayerData.Count);
+            int color = context.random.Range(1, mapPlayerData.Count);
             AddFood(pos, color);
         }
 
@@ -341,19 +341,19 @@ namespace Snaker.GameCore
             NormalFood food = EntityFactory.InstanceEntity<NormalFood>();
             food.Create(0, color, pos);
 
-            m_listFood.Add(food);
+            foodList.Add(food);
         }
 
         private void RemoveFoodAt(int i)
         {
-            EntityObject food = m_listFood[i];
-            m_listFood.RemoveAt(i);
+            EntityObject food = foodList[i];
+            foodList.RemoveAt(i);
             EntityFactory.ReleaseEntity(food);
         }
 
         public List<EntityObject> GetFoodList()
         {
-            return m_listFood;
+            return foodList;
         }
 
 

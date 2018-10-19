@@ -87,7 +87,7 @@ namespace Snaker.UI.Home
 
         public void OnBtnPVP()
         {
-            //OpenModule(ModuleConst.PVPModule, (int)GameMode.EndlessPVP);
+            OpenModule(ModuleConst.PVPModule, (int)GameMode.UnlimitedPVP);
         }
 
 

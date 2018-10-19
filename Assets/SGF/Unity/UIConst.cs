@@ -15,8 +15,8 @@
 
         public const string UIPVPGamePage = "PVP/UIPVPGamePage";
         public const string UIPVPRoomPage = "PVP/UIPVPRoomPage";
-        public const string UIRoomFindWnd = "PVP/UIRoomFindWnd";
+        public const string UIRoomFindWin = "PVP/UIRoomFindWin";
 
-        public const string UIHostWnd = "Host/UIHostWnd";
+        public const string UIHostWin = "Host/UIHostWin";
     }
 }
