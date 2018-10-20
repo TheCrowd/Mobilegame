@@ -256,6 +256,7 @@
     <Compile Include="Assets\Snaker\UI\Host\UIHostWin.cs" />
     <Compile Include="Assets\Snaker\UI\Login\UILoginPage.cs" />
     <Compile Include="Assets\Snaker\UI\PVE\UIPVEGamePage.cs" />
+    <Compile Include="Assets\Snaker\UI\PVP\GameRankItem.cs" />
     <Compile Include="Assets\Snaker\UI\PVP\RoomPlayerItem.cs" />
     <Compile Include="Assets\Snaker\UI\PVP\UIPVPGamePage.cs" />
     <Compile Include="Assets\Snaker\UI\PVP\UIPVPRoomPage.cs" />

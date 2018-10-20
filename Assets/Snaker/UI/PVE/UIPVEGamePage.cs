@@ -1,5 +1,8 @@
 ﻿using SGF.Time;
 using SGF.Unity;
+using Snaker.GameCore;
+using Snaker.GameCore.Data;
+using Snaker.GameCore.Player;
 using Snaker.Module;
 using Snaker.Module.PVE;
 using Snaker.Service.Core;
@@ -14,9 +17,10 @@ namespace Snaker.PVE.UI
         public Text txtUserInfo;
         public Button btnReady;
         public Text txtTimeInfo;
+        public Text txtScoreInfo;
 
         private PVEGame m_game;
-
+        private string cur_score = "0";
         /// <summary>
         /// when open PVE UI
         /// </summary>
@@ -30,7 +34,6 @@ namespace Snaker.PVE.UI
             m_game = module.GetCurrentGame();
             m_game.onMainPlayerDie += OnMainPlayerDie;
             m_game.onGameEnd += OnGameEnd;
-
             txtUserInfo.text = UserManager.Instance.MainUserData.name;
             txtTimeInfo.text = "";
 
@@ -50,7 +53,6 @@ namespace Snaker.PVE.UI
         {
             UIUtils.SetActive(btnReady, false);
             m_game.CreatePlayer();
-
 
         }
 
@@ -104,8 +106,7 @@ namespace Snaker.PVE.UI
 		private void OnGameEnd()
         {
             m_game = null;
-
-            MsgBoxAPI.ShowMsgBox("Game Over", "show game score...", "OK", (arg) =>
+            MsgBoxAPI.ShowMsgBox("Game Over", "your score for this game is: "+cur_score, "OK", (arg) =>
             {
                 UIManager.Instance.GoBackPage();
             });
@@ -130,9 +131,26 @@ namespace Snaker.PVE.UI
                 {
                     time = m_game.GetElapsedTime();
                 }
-
                 txtTimeInfo.text = TimeUtils.GetTimeString("%hh:%mm:%ss", time);
+                //when game ends, score is reset to 0, in this case do not update
+                if (!GetPlayerScore().Equals("0"))
+                {
+                    txtScoreInfo.text = "score:" + GetPlayerScore();
+                    cur_score = GetPlayerScore();
+                }
             }
+        }
+
+        public string GetPlayerScore()
+        {
+            uint m_mainPlayerId = 1;
+            string result = "0";
+            SnakePlayer mainPlayer = GameManager.Instance.GetPlayer(m_mainPlayerId);
+            if (mainPlayer != null)
+            {
+                result = mainPlayer.Data.Score.ToString();
+            }
+            return result;
         }
 
     }

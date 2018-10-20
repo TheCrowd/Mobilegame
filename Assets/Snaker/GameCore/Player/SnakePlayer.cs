@@ -146,7 +146,7 @@ namespace Snaker.GameCore.Player
             vs = Mathf.Min(vs, 1);
             vs = Mathf.Max(vs, 0.5f);
             m_data.snakeData.viewScale = vs;
-
+            m_data.score++;
             this.Log(LOG_TAG, "AddNodes() NewCount:{0}, SnakeLength:{1}, ViewSize:{2}", cnt, m_data.snakeData.length, vs);
         }
 

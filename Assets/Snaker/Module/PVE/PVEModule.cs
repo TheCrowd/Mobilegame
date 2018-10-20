@@ -32,7 +32,8 @@ namespace Snaker.Module
         {
             GameParam param = new GameParam();
             param.mode = (GameMode)mode;
-            param.limitedTime = 10;
+            //time limit in limited mode
+            param.limitedTime = 150;
 
             m_game = new PVEGame();
             m_game.Start(param);

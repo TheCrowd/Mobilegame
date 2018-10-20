@@ -32,7 +32,7 @@ namespace Snaker.Module.PVE
             pd.userId = UserManager.Instance.MainUserData.id;
             pd.snakeData.id = 3;
             pd.snakeData.length = 50;
-            pd.ai = 1;
+            pd.ai = 0;
             GameManager.Instance.RegPlayerData(pd);
 
             //initial Game Input

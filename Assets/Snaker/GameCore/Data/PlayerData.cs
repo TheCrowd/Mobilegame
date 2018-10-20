@@ -50,6 +50,8 @@ namespace Snaker.GameCore.Data
         [ProtoMember(7)]
         public int ai = 0;
 
+        public int Score { get { return score; } }
+
 
     }
 }
