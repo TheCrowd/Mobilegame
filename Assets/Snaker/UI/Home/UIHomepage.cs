@@ -24,6 +24,7 @@ namespace Snaker.UI.Home
             if (created)
             {
                 if (ad != null) ad.Visible = true;
+                return;
             }
             CreateAd();
         }
