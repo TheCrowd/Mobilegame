@@ -59,7 +59,6 @@ namespace Snaker.GameCore
                     pos.x = targetPos.x;
                     pos.y = targetPos.y;
                     this.transform.position = pos;
-
                 }
             }
         }

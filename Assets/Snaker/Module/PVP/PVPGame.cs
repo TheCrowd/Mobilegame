@@ -10,6 +10,7 @@ using Snaker.GameCore.Data;
 using Snaker.GameCore;
 using SGF.Logger;
 using Snaker.Service.UserManager;
+using Snaker.GameCore.Player;
 
 namespace Snaker.Module.PVP
 {
@@ -198,6 +199,21 @@ namespace Snaker.Module.PVP
 		private void FixedUpdate()
         {
             mgrFSP.EnterFrame();
+            CheckCameraZoom();
+        }
+
+        public void CheckCameraZoom()
+        {
+            SnakePlayer mainPlayer = GameManager.Instance.GetPlayer(GameCamera.FocusPlayerId);
+            if (mainPlayer != null)
+            {
+                float vs = mainPlayer.Data.score / 250f;
+
+                //zoom out camera if the snake becomes large
+                if(vs>1)
+                    if (Camera.main.orthographicSize < 720)
+                        Camera.main.orthographicSize = vs * 240;
+            }
         }
 
         private void OnEnterFrame(int frameId, FSPFrame frame)

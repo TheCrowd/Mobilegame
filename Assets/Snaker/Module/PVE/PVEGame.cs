@@ -2,8 +2,10 @@
 using SGF.Unity;
 using Snaker.GameCore;
 using Snaker.GameCore.Data;
+using Snaker.GameCore.Player;
 using Snaker.Service.UserManager;
 using System;
+using UnityEngine;
 
 namespace Snaker.Module.PVE
 {
@@ -139,6 +141,21 @@ namespace Snaker.Module.PVE
             GameManager.Instance.EnterFrame(m_frameIndex);
 
             CheckTimeEnd();
+
+            CheckCameraZoom();
+        }
+
+        public void CheckCameraZoom()
+        {
+            SnakePlayer mainPlayer=GameManager.Instance.GetPlayer(1);
+            if (mainPlayer != null)
+            {
+                float vs=mainPlayer.Data.snakeData.length / 250f;
+                if (vs < 1) vs = 1;
+                //zoom out camera if the snake becomes large
+                if (Camera.main.orthographicSize < 720)
+                    Camera.main.orthographicSize = vs * 240;
+            }
         }
 
         /// <summary>
