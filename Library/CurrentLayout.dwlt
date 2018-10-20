@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 950, y: 542}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -42,10 +42,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 926
-  m_MinSize: {x: 681, y: 492}
+  m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 110
+  controlID: 9
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -90,8 +90,8 @@ MonoBehaviour:
     y: 0
     width: 260
     height: 655
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -144,7 +144,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 976
-  m_MinSize: {x: 950, y: 542}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &7
 MonoBehaviour:
@@ -207,10 +207,10 @@ MonoBehaviour:
     y: 0
     width: 1537
     height: 926
-  m_MinSize: {x: 404, y: 492}
+  m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 111
+  controlID: 10
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -231,10 +231,10 @@ MonoBehaviour:
     y: 0
     width: 1537
     height: 655
-  m_MinSize: {x: 404, y: 221}
-  m_MaxSize: {x: 8004, y: 4021}
+  m_MinSize: {x: 406, y: 221}
+  m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 112
+  controlID: 11
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -358,19 +358,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/EasyTouch/Plugins/Resources
+    - Assets/Snaker/Module/PVE
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/EasyTouch/Plugins/Resources
+  - Assets/Snaker/Module/PVE
   m_LastFoldersGridSize: -1
   m_LastProjectPath: F:\SnakerProj\ZSLSnaker
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 47}
-    m_SelectedIDs: 742e0000
-    m_LastClickedID: 11892
-    m_ExpandedIDs: 00000000a4290000062a0000be2a0000562b0000082c00002e2d0000362d0000442e0000562e0000502f0000d82f00001c3000002030000066300000c2300000ffffff7f
+    scrollPos: {x: 0, y: 559}
+    m_SelectedIDs: ea4e0000
+    m_LastClickedID: 20202
+    m_ExpandedIDs: 00000000744d0000c64d0000524e0000c24e0000484f0000205000002850000090500000f450000006510000bc510000e8510000125200004a5200004e5200008a520000c6520000ffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -398,7 +398,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a4290000062a0000be2a0000562b0000082c0000362d0000ce2d0000442e0000562e0000502f00009a2f00001c3000002030000066300000c2300000
+    m_ExpandedIDs: 00000000744d0000c64d0000524e0000c24e0000484f00002050000028500000f450000006510000bc510000125200004a5200004e5200008a520000c6520000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -514,9 +514,9 @@ MonoBehaviour:
     height: 634
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 36320000
-    m_LastClickedID: 12854
-    m_ExpandedIDs: 98f9ffffcafbffff0000000036320000
+    m_SelectedIDs: 32400000
+    m_LastClickedID: 0
+    m_ExpandedIDs: d285ffffd885ffffdc85ffffde85ffffe485ffff26b5ffff2cb5ffff30b5ffff32b5ffff38b5ffff32e3ffff38e3ffff3ce3ffff3ee3ffff44e3ffff86e8ffff1ee9ffff60eaffff54eeffff000000003c550000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -600,9 +600,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 2186.5344
+    m_Target: 794.01843
     speed: 2
-    m_Value: 2186.5344
+    m_Value: 794.01843
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -669,7 +669,7 @@ MonoBehaviour:
       y: 17
       width: 1273
       height: 617
-    m_Scale: {x: 0.80338544, y: 0.80338544}
+    m_Scale: {x: 0.77125, y: 0.77125}
     m_Translation: {x: 636.5, y: 308.5}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -677,12 +677,12 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -792.2723
-      y: -384
-      width: 1584.5446
-      height: 768
+      x: -825.2836
+      y: -400
+      width: 1650.5673
+      height: 800
     m_MinimalGUI: 1
-  m_defaultScale: 0.80338544
+  m_defaultScale: 0.77125
   m_TargetTexture: {fileID: 0}
   m_CurrentColorSpace: 0
   m_LastWindowPixelSize: {x: 1273, y: 634}

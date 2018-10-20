@@ -130,7 +130,7 @@ namespace Snaker.GameCore
         {
             if (m_Button.name == buttonName)
             {
-                HandleVKey(GameVKeys.SpeedUp, 2);
+                HandleVKey(GameVKeys.SpeedUp, 4);
             }
         }
 
@@ -138,7 +138,7 @@ namespace Snaker.GameCore
         {
             if (m_Button.name == buttonName)
             {
-                HandleVKey(GameVKeys.SpeedUp, 1);
+                HandleVKey(GameVKeys.SpeedUp, 2);
             }
         }
 

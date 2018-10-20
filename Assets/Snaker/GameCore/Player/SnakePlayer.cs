@@ -275,7 +275,7 @@ namespace Snaker.GameCore.Player
         #region Move
         private Vector3 m_MoveDirection = new Vector3();
         private Vector3 m_InputMoveDirection = new Vector3();
-        private float m_MoveSpeed = 1;
+        private float m_MoveSpeed = 2;
         public Vector3 MoveDirection { get { return m_MoveDirection; } }
 
         private bool DoVKey_Move(int vkey, float args)
