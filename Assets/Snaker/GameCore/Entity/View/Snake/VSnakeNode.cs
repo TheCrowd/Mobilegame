@@ -31,7 +31,8 @@ namespace Snaker.GameCore.Entity.View.Snake
             if (m_renderer != null)
             {
                 m_renderer.enabled = true;
-                m_renderer.color = m_context.GetUniqueColor(m_entity.TeamId);
+                //m_renderer.color = m_context.GetUniqueColor(m_entity.TeamId);
+                m_renderer.color = Color.white;
                 if (m_entity.Index > 0)
                 {
                     m_renderer.sortingOrder = 10000 - m_entity.Index;
