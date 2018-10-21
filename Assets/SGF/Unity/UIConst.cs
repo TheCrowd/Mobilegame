@@ -9,6 +9,7 @@
         //UI modules
         public const string UILoginPage = "Login/UILoginPage";
         public const string UIHomePage = "Home/UIHomePage";
+        public const string UIChangeSkinWin = "Home/UIChangeSkinWin";
 
         public const string UIPVEGamePage = "PVE/UIPVEGamePage";
         public const string UIPVEPage = "PVE/UIPVEPage";

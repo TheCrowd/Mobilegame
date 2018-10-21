@@ -70,7 +70,7 @@ namespace Snaker.UI.Home
 
             // Android settings
 #if AMAZON
-		desc.Android_AdAPI = AdAPIs.Amazon;// Choose between AdMob or Amazon
+		    desc.Android_AdAPI = AdAPIs.Amazon;// Choose between AdMob or Amazon
 #else
             desc.Android_AdAPI = AdAPIs.AdMob;// Choose between AdMob or Amazon
 #endif
@@ -174,6 +174,10 @@ namespace Snaker.UI.Home
         public void OnBtnPVP()
         {
             OpenModule(ModuleConst.PVPModule, (int)GameMode.UnlimitedPVP);
+        }
+        public void OnBtnChangeSkin()
+        {
+            UIWindow wnd = UIManager.Instance.OpenWindow(UIConst.UIChangeSkinWin);
         }
 
 

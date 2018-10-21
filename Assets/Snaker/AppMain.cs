@@ -12,6 +12,7 @@ using Snaker.Service.UserManager;
 using SGF.Unity;
 using Snaker.GameCore;
 using SGF.Network;
+using Snaker.Service;
 
 public class AppMain : MonoBehaviour {
 
@@ -44,7 +45,7 @@ public class AppMain : MonoBehaviour {
         UIManager.MainScene = "Main";
 
         UserManager.Instance.Init();
-
+        SkinManager.Instance.Init();
         GameManager.Instance.Init();
     }
 

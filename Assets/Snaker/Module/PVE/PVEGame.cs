@@ -3,6 +3,7 @@ using SGF.Unity;
 using Snaker.GameCore;
 using Snaker.GameCore.Data;
 using Snaker.GameCore.Player;
+using Snaker.Service;
 using Snaker.Service.UserManager;
 using System;
 using UnityEngine;
@@ -32,7 +33,7 @@ namespace Snaker.Module.PVE
             PlayerData pd = new PlayerData();
             pd.id = m_mainPlayerId;
             pd.userId = UserManager.Instance.MainUserData.id;
-            pd.snakeData.id = 3;
+            pd.snakeData.id = SkinManager.Instance.SkinType;
             pd.snakeData.length = 50;
             pd.ai = 0;
             GameManager.Instance.RegPlayerData(pd);

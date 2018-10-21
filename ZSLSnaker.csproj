@@ -13,12 +13,14 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.6.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -234,6 +236,7 @@
     <Compile Include="Assets\Snaker\Service\Core\ModuleManager.cs" />
     <Compile Include="Assets\Snaker\Service\Core\ModuleTest\SampleModule.cs" />
     <Compile Include="Assets\Snaker\Service\Core\ServiceModule.cs" />
+    <Compile Include="Assets\Snaker\Service\SkinManager.cs" />
     <Compile Include="Assets\Snaker\Service\UIManager\UIManager.cs" />
     <Compile Include="Assets\Snaker\Service\UIManager\UIPage.cs" />
     <Compile Include="Assets\Snaker\Service\UIManager\UIPanel.cs" />
@@ -252,6 +255,7 @@
     <Compile Include="Assets\Snaker\Service\UserManager\UserBean.cs" />
     <Compile Include="Assets\Snaker\Service\UserManager\UserManager.cs" />
     <Compile Include="Assets\Snaker\UI\Common\UIMsgBox.cs" />
+    <Compile Include="Assets\Snaker\UI\Home\UIChangeSkinWin.cs" />
     <Compile Include="Assets\Snaker\UI\Home\UIHomepage.cs" />
     <Compile Include="Assets\Snaker\UI\Host\UIHostWin.cs" />
     <Compile Include="Assets\Snaker\UI\Login\UILoginPage.cs" />
